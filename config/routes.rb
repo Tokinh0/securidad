@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :virtual_cards
+  resources :cards
+  resources :documents
+  resources :contact_infos
+  resources :people
+
+  devise_for :users
+  root to: 'people#index'
 end

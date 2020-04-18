@@ -1,0 +1,37 @@
+<%= form_with(model: virtual_card, local: true) do |form| %>
+  <% if virtual_card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(virtual_card.errors.count, "error") %> prohibited this virtual_card from being saved:</h2>
+
+      <ul>
+        <% virtual_card.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cvc %>
+    <%= form.text_field :cvc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiration_date %>
+    <%= form.date_select :expiration_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_id %>
+    <%= form.text_field :card_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

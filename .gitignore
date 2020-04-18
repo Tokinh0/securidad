@@ -22,3 +22,15 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore .env file
+.env
+
+# Ignore config files
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
