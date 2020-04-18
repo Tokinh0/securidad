@@ -17,4 +17,73 @@ body{
   position:absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  z-index: -1;
 }
+
+[type="number"],
+[type="email"],
+[type="text"],
+[type="password"] {
+  border-radius: 0;
+  border-width: 0 0 2px;
+  border-color: rgb(217, 83, 79);
+  background: rgba(255, 255, 255, 0);
+  padding: 5px 9px;
+  border-style: solid;
+  width: 100%;
+}
+
+input::placeholder{
+  color: #999999;
+  font-size: .8em;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.hidden{
+  display: none!important;
+}
+
+.sign-up-panel{
+  height: 35rem;
+}
+
+.sign-up-container{
+  margin-top: 3rem;
+}
+
+.rounded-xl{
+  border-radius: 3rem !important;
+}
+
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 20px;
+  margin-bottom: 50px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+  background-image:
+          -webkit-linear-gradient(-45deg,
+                  transparent 33%, rgba(0, 0, 0, .1) 33%,
+                  rgba(0,0, 0, .1) 66%, transparent 66%),
+          -webkit-linear-gradient(top,
+                  rgba(255, 255, 255, .25),
+                  rgba(0, 0, 0, .25)),
+          -webkit-linear-gradient(left, gray, lightblue);
+
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+

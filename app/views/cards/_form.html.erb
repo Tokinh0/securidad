@@ -11,42 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :number %>
-    <%= form.text_field :number %>
+  <div class="field hidden third-step">
+    <%= form.text_field :number, placeholder: 'Card number' %>
   </div>
 
-  <div class="field">
-    <%= form.label :cvc %>
-    <%= form.text_field :cvc %>
+  <div class="field hidden third-step">
+    <%= form.text_field :cvc, placeholder: 'CVC' %>
   </div>
 
-  <div class="field">
-    <%= form.label :expiration_date %>
-    <%= form.date_select :expiration_date %>
+  <div class="field hidden third-step">
+    <%= form.text_field :expiration_date, placeholder: 'Expiration date' %>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field hidden third-step">
+    <%= form.text_field :name, placeholder: 'Card owner name' %>
   </div>
 
-  <div class="field">
-    <%= form.label :birthdate %>
-    <%= form.date_select :birthdate %>
+  <div class="field hidden third-step">
+    <%= form.text_field :birthdate, placeholder: 'Card owner birthdate' %>
   </div>
 
-  <div class="field">
-    <%= form.label :cpf %>
-    <%= form.text_field :cpf %>
-  </div>
-
-  <div class="field">
-    <%= form.label :person_id %>
-    <%= form.text_field :person_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="field hidden third-step">
+    <%= form.text_field :cpf, placeholder: 'Card owner CPF' %>
   </div>
 <% end %>

@@ -11,22 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field hidden second-step">
+    <%= form.text_field :name, placeholder: 'Name' %>
   </div>
 
-  <div class="field">
-    <%= form.label :birth_date %>
-    <%= form.date_select :birth_date %>
+  <div class="field hidden second-step">
+    <%= form.number_field :gender, placeholder: 'Gender' %>
   </div>
 
-  <div class="field">
-    <%= form.label :gender %>
-    <%= form.number_field :gender %>
+  <div class="field hidden second-step mb-5">
+    <%= form.text_field :birth_date, placeholder: 'Birthdate' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.fields_for :card do |builder|%>
+    <%= render 'cards/form',f: builder, card: person.cards.build %>
+  <% end %>
 <% end %>

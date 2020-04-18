@@ -1,29 +1,86 @@
-<h2>Sign up</h2>
+<div class="container sign-up-container">
+  <div class="card col-md-5 mx-auto rounded-xl">
+    <div class="card-body justify-content-center sign-up-panel">
+      <progress value="0.3"></progress>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="field first-step">
+          <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: 'Username' %>
+        </div>
+
+        <div class="field first-step">
+          <% if @minimum_password_length %>
+            <em></em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password (#{@minimum_password_length} characters minimum)" %>
+        </div>
+
+        <div class="field mb-5 first-step">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Password confirmation' %>
+        </div>
+
+        <%= f.fields_for :person, @person = Person.new do |ff|%>
+          <div class="field hidden second-step">
+            <%= ff.text_field :name, placeholder: 'Name' %>
+          </div>
+
+          <div class="field hidden second-step">
+            <%= ff.number_field :gender, placeholder: 'Gender' %>
+          </div>
+
+          <div class="field hidden second-step mb-5">
+            <%= ff.text_field :birth_date, placeholder: 'Birthdate' %>
+          </div>
+
+          <%= ff.fields_for :cards, Card.new do |fff|%>
+            <div class="field hidden third-step">
+              <%= fff.text_field :number, placeholder: 'Card number' %>
+            </div>
+
+            <div class="field hidden third-step">
+              <%= fff.text_field :cvc, placeholder: 'CVC' %>
+            </div>
+
+            <div class="field hidden third-step">
+              <%= fff.text_field :expiration_date, placeholder: 'Expiration date' %>
+            </div>
+
+            <div class="field hidden third-step">
+              <%= fff.text_field :name, placeholder: 'Card owner name' %>
+            </div>
+
+            <div class="field hidden third-step">
+              <%= fff.text_field :birthdate, placeholder: 'Card owner birthdate' %>
+            </div>
+
+            <div class="field hidden third-step">
+              <%= fff.text_field :cpf, placeholder: 'Card owner CPF' %>
+            </div>
+          <% end %>
+        <% end %>
+        <%= f.submit "Sign up", class: 'btn btn-primary col-md-4 rounded-pill third-step hidden' %>
+    <% end %>
+      <div class="pt-md-1">
+        <div class="btn-group col-md-12 mt-4 d-flex justify-content-center">
+          <button id="next-login-step" class='btn btn-primary col-md-4 rounded-pill second-step'>Next step</button>
+          <div class="first-step col-md-4" style="height: 24px;">
+            <%= render "devise/shared/links"%>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5 first-step">
+        <p style="color: #999999">Login with</p>
+      </div>
+      <div class="row justify-content-center mt-5 first-step">
+        <div class="d-flex justify-content-center">
+          <%= link_to fa_icon('facebook', text: "Facebook"), '/', class: 'mr-5' %>
+
+          <%= link_to fa_icon('google', text: "Google"), '/' %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+<%= javascript_pack_tag 'sign_up', 'data-turbolinks-track': 'reload' %>
