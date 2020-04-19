@@ -34,6 +34,10 @@
             <%= ff.text_field :birth_date, placeholder: 'Birthdate' %>
           </div>
 
+          <div class="field hidden second-step mb-5">
+            <%= ff.file_field :avatar, as: :file %>
+          </div>
+
           <%= ff.fields_for :cards, Card.new do |fff|%>
             <div class="field hidden third-step">
               <%= fff.text_field :number, placeholder: 'Card number' %>
