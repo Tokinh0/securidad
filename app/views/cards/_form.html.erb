@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field hidden third-step">
+  <div class="field">
     <%= form.text_field :number, placeholder: 'Card number' %>
   </div>
 
-  <div class="field hidden third-step">
+  <div class="field">
     <%= form.text_field :cvc, placeholder: 'CVC' %>
   </div>
 
-  <div class="field hidden third-step">
+  <div class="field">
     <%= form.text_field :expiration_date, placeholder: 'Expiration date' %>
   </div>
 
-  <div class="field hidden third-step">
+  <div class="field">
     <%= form.text_field :name, placeholder: 'Card owner name' %>
   </div>
 
-  <div class="field hidden third-step">
-    <%= form.text_field :birthdate, placeholder: 'Card owner birthdate' %>
+  <div class="actions">
+    <%= form.submit "save", class: "btn btn-primary col-md-1 rounded-pill pull-right"%>
+    <% if @card.valid? %>
+      <%= link_to 'Deletar', @card, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger col-md-2 rounded-pill' %>
+    <% end %>
   </div>
 
-  <div class="field hidden third-step">
-    <%= form.text_field :cpf, placeholder: 'Card owner CPF' %>
-  </div>
 <% end %>

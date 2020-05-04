@@ -1,39 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Cards</h1>
+<h1>Cartões de Crédito</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Cvc</th>
-      <th>Expiration date</th>
-      <th>Name</th>
-      <th>Birthdate</th>
-      <th>Cpf</th>
-      <th>Person</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container-cards">
+  <% @cards.each do |card| %>
+    <%= link_to edit_card_path(card) do %>
+      <div class="credit_card">
+        <div class="credit_card__front credit_card__part">
+          <img class="credit_card__front-square credit_card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+          <p class="credit_card_numer"><%= card.number %></p>
+          <div class="credit_card__space-75">
+            <span class="credit_card__label"><%= card.name %></span>
+            <p class="credit_card__info"></p>
+          </div>
+          <div class="credit_card__space-25">
+            <span class="credit_card__label">Expires</span>
+            <p class="credit_card__info"><%= card.expiration_date%></p>
+          </div>
+        </div>
 
-  <tbody>
-    <% @cards.each do |card| %>
-      <tr>
-        <td><%= card.number %></td>
-        <td><%= card.cvc %></td>
-        <td><%= card.expiration_date %></td>
-        <td><%= card.name %></td>
-        <td><%= card.birthdate %></td>
-        <td><%= card.cpf %></td>
-        <td><%= card.person_id %></td>
-        <td><%= link_to 'Show', card %></td>
-        <td><%= link_to 'Edit', edit_card_path(card) %></td>
-        <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <div class="credit_card__back credit_card__part">
+          <div class="credit_card__black-line"></div>
+          <div class="credit_card__back-content">
+            <div class="credit_card__secret">
+              <p class="credit_card__secret--last"><%=card.cvc %></p>
+            </div>
+            <img class="credit_card__back-square credit_card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+</div>
 
 <br>
 
-<%= link_to 'New Card', new_card_path %>
+<%= link_to '+', new_card_path, class: 'btn btn-primary col-md-1 rounded-pill ml-auto p-2' %>
+

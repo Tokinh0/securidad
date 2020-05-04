@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_141944) do
+ActiveRecord::Schema.define(version: 2020_05_04_144925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(version: 2020_04_19_141944) do
     t.string "cvc"
     t.date "expiration_date"
     t.string "name"
-    t.date "birthdate"
-    t.string "cpf"
     t.uuid "person_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -98,6 +96,8 @@ ActiveRecord::Schema.define(version: 2020_04_19_141944) do
     t.uuid "card_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "usage_limit", default: 0
+    t.float "spent_limit", default: 0.0
     t.index ["card_id"], name: "index_virtual_cards_on_card_id"
   end
 

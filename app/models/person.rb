@@ -13,6 +13,10 @@ class Person < ApplicationRecord
     end
   end
 
+  def card_numbers
+    cards&.map{ |card| card.number }
+  end
+
   accepts_nested_attributes_for :cards, allow_destroy: true
   accepts_nested_attributes_for :contact_infos, allow_destroy: true
 end

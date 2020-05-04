@@ -1,4 +1,4 @@
-<%= form_with(model: virtual_card, local: true) do |form| %>
+<%= form_with(model: virtual_card, local: true, class: "form-group") do |form| %>
   <% if virtual_card.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(virtual_card.errors.count, "error") %> prohibited this virtual_card from being saved:</h2>
@@ -23,15 +23,30 @@
 
   <div class="field">
     <%= form.label :expiration_date %>
-    <%= form.date_select :expiration_date %>
+    <%= form.date_select :expiration_date, discard_day: true, data:{ provide:'datepicker' } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :usage_limit %>
+    <%= form.text_field :usage_limit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :spent_limit %>
+    <%= form.text_field :spent_limit %>
   </div>
 
   <div class="field">
     <%= form.label :card_id %>
-    <%= form.text_field :card_id %>
+    <%= form.select :card_id, options_for_select(current_user.person.cards.ids)%>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Salvar", class: "btn btn-primary col-md-1 rounded-pill pull-right" %>
+    <% if @virtual_card.valid? %>
+      <%= link_to 'Deletar', @virtual_card, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger col-md-2 rounded-pill' %>
+  <% end %>
   </div>
+
+
 <% end %>

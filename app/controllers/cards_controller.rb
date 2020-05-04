@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
+    @cards = Card.where(person: current_user.person)
   end
 
   # GET /cards/1
@@ -25,11 +25,11 @@ class CardsController < ApplicationController
   # POST /cards.json
   def create
     @card = Card.new(card_params)
-
+    @card.person = current_user.person
     respond_to do |format|
       if @card.save
-        format.html { redirect_to @card, notice: 'Card was successfully created.' }
-        format.json { render :show, status: :created, location: @card }
+        format.html { redirect_to action: "index", notice: 'Card was successfully created.' }
+        format.json { render :index, status: :created }
       else
         format.html { render :new }
         format.json { render json: @card.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class CardsController < ApplicationController
   def update
     respond_to do |format|
       if @card.update(card_params)
-        format.html { redirect_to @card, notice: 'Card was successfully updated.' }
-        format.json { render :show, status: :ok, location: @card }
+        format.html { redirect_to action: "index", notice: 'Card was successfully updated.' }
+        format.json { render :index, status: :ok}
       else
         format.html { render :edit }
         format.json { render json: @card.errors, status: :unprocessable_entity }
@@ -69,6 +69,6 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:number, :cvc, :expiration_date, :name, :birthdate, :cpf, :person_id)
+      params.require(:card).permit(:number, :cvc, :expiration_date, :name, :person_id)
     end
 end

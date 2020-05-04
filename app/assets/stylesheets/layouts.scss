@@ -86,4 +86,29 @@ progress[value]::-webkit-progress-value {
   background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 
-
+.user-panel{
+  top: 2em;
+}
+.avatar{
+  border-radius: 50%;
+}
+.user-information-name{
+  h4{
+    padding-top: 2em;
+    margin-bottom: -2em;
+  }
+}
+.user-panel-menu{
+  list-style: none;
+  display: flex;
+  .user-panel-menu-option{
+    display: inline-block;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+}
+.body-container{
+  top: 3.5em;
+  height: 62%;
+  padding: 1em;
+}

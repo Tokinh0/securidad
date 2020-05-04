@@ -1,33 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Virtual Cards</h1>
+<h1>Cartões Virtuais</h1>
+<div class="container-cards">
+  <% @virtual_cards.each do |virtual_card| %>
+    <%= link_to edit_virtual_card_path(virtual_card) do %>
+    <div class="virtual_card">
+      <div class="virtual_card__front virtual_card__part">
+        <img class="virtual_card__front-square virtual_card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+        <p class="virtual_card_numer"><%= virtual_card.number %></p>
+        <div class="virtual_card__space-75">
+          <span class="virtual_card__label"><%= virtual_card.card.name %></span>
+          <p class="virtual_card__info"></p>
+        </div>
+        <div class="virtual_card__space-25">
+          <span class="virtual_card__label">Expires</span>
+          <p class="virtual_card__info"><%= virtual_card.expiration_date%></p>
+        </div>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Cvc</th>
-      <th>Expiration date</th>
-      <th>Card</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @virtual_cards.each do |virtual_card| %>
-      <tr>
-        <td><%= virtual_card.number %></td>
-        <td><%= virtual_card.cvc %></td>
-        <td><%= virtual_card.expiration_date %></td>
-        <td><%= virtual_card.card_id %></td>
-        <td><%= link_to 'Show', virtual_card %></td>
-        <td><%= link_to 'Edit', edit_virtual_card_path(virtual_card) %></td>
-        <td><%= link_to 'Destroy', virtual_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="virtual_card__back virtual_card__part">
+        <div class="virtual_card__black-line"></div>
+        <div class="virtual_card__back-content">
+          <div class="virtual_card__secret">
+            <p class="virtual_card__secret--last"><%=virtual_card.cvc %></p>
+          </div>
+          <img class="virtual_card__back-square virtual_card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+        </div>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
+  <% end %>
+</div>
 <br>
 
-<%= link_to 'New Virtual Card', new_virtual_card_path %>
+<%= link_to '+', new_virtual_card_path, class: 'btn btn-primary col-md-1 rounded-pill ml-auto p-2' %>
