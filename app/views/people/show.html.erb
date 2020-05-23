@@ -1,19 +1,46 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Back', people_path %>
+<%= link_to 'Voltar', people_path, class: "ml-auto p-2" %>
 <p>
-  <strong>Name:</strong>
+  <strong>Nome:</strong>
   <%= @person.name %>
 </p>
 
 <p>
-  <strong>Birth date:</strong>
+  <strong>Nascimento:</strong>
   <%= @person.birth_date %>
 </p>
 
 <p>
-  <strong>Gender:</strong>
+  <strong>Gênero:</strong>
   <%= @person.gender %>
 </p>
 
-<%= link_to 'Edit', edit_person_path(@person) %> |
+<% @person.contact_infos.each do |contact| %>
+  <p>
+    <strong>Email:</strong>
+    <%= contact.email %>
+  </p>
+  <p>
+    <strong>Celular:</strong>
+    <%= contact.mobile_phone %>
+  </p>
+  <p>
+    <strong>Telefone:</strong>
+    <%= contact.phone %>
+  </p>
+<% end %>
+
+<% @person.documents.each do |document| %>
+  <p>
+    <strong>Nª Documento:</strong>
+    <%= document.number %>
+  </p>
+  <p>
+    <strong>Tipo de Documento:</strong>
+    <%= document.type %>
+  </p>
+<% end %>
+
+
+<%= link_to 'Editar', edit_person_path(@person), class: 'btn btn-warning col-md-1 rounded-pill' %>
 

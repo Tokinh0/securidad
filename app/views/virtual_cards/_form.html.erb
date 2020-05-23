@@ -43,7 +43,7 @@
 
   <div class="actions">
     <%= form.submit "Salvar", class: "btn btn-primary col-md-1 rounded-pill pull-right" %>
-    <% if @virtual_card.valid? %>
+    <% if @virtual_card&.valid? %>
       <%= link_to 'Deletar', @virtual_card, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger col-md-2 rounded-pill' %>
   <% end %>
   </div>

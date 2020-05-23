@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_144925) do
+ActiveRecord::Schema.define(version: 2020_05_04_154119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -58,6 +58,14 @@ ActiveRecord::Schema.define(version: 2020_05_04_144925) do
     t.index ["person_id"], name: "index_contact_infos_on_person_id"
   end
 
+  create_table "credits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "person_id"
+    t.float "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_credits_on_person_id"
+  end
+
   create_table "documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "number"
     t.integer "type"
@@ -73,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_144925) do
     t.integer "gender"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "total_credit", default: 0.0
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

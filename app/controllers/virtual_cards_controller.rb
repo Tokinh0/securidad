@@ -4,7 +4,7 @@ class VirtualCardsController < ApplicationController
   # GET /virtual_cards
   # GET /virtual_cards.json
   def index
-    @virtual_cards = VirtualCard.all
+    @virtual_cards = VirtualCard.search_by_user(current_user.person.id)
   end
 
   # GET /virtual_cards/1
