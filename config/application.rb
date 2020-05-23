@@ -18,7 +18,7 @@ module Securidad
     # the framework and any gems in your application.
 
     config.active_record.primary_key = :uuid
-
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
       g.orm :active_record, foreign_key_type: :uuid

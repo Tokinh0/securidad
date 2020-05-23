@@ -12,6 +12,39 @@
 
   <body>
     <div id='particles-js'></div>
+    <% if !current_user.nil? %>
+    <div class="user-panel card col-md-8 mx-auto rounded-xl card-body">
+      <div class="user-panel-up row">
+        <div class="user-information row col-md">
+          <div class="user-information-avatar col-md-4">
+            <%=image_tag(current_user.person.user_avatar, size: 100, class: "avatar")%>
+          </div>
+          <div class="text-left user-information-name col-md-6">
+            <h4><%= current_user.person.name %></h4>
+            <h6>Credito: <%= current_user.person.total_credit %></h6>
+          </div>
+        </div>
+        <div class="text-right logout-button col-md">
+          <%= link_to('SAIR', destroy_user_session_path, class: 'btn btn-secondary col-md-4 rounded-pill', method: 'delete') %>
+        </div>
+      </div>
+      <div class="user-panel-down flex-row">
+        <div class="user-panel-menu justify-content-center">
+          <a class="user-panel-menu-option btn btn-light" href="/">Home</a>
+          <a class="user-panel-menu-option btn btn-light" href="/cards">Cartões</a>
+          <a class="user-panel-menu-option btn btn-light" href="/virtual_cards">Cartões Virtuais</a>
+          <a class="user-panel-menu-option btn btn-light" href="/people/<%= current_user.person.id %>">Minha Conta</a>
+          <a class="user-panel-menu-option btn btn-light" href="">Depositar</a>
+          <a class="user-panel-menu-option btn btn-light" href="">Contato</a>
+        </div>
+      </div>
+    </div>
+    <div class="body-container card col-md-8 mx-auto rounded-xl card-body">
+      <%= yield %>
+    </div>
+  <% else %>
     <%= yield %>
+  <% end %>
+
   </body>
 </html>

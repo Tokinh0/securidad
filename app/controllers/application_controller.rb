@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
           :name,
           :gender,
           :birth_date,
+          :avatar,
           cards_attributes: %i[
             number
             cvc

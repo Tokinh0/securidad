@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :credits
   resources :virtual_cards
   resources :cards
   resources :documents

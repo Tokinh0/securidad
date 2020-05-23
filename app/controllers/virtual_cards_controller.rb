@@ -4,7 +4,7 @@ class VirtualCardsController < ApplicationController
   # GET /virtual_cards
   # GET /virtual_cards.json
   def index
-    @virtual_cards = VirtualCard.all
+    @virtual_cards = VirtualCard.search_by_user(current_user.person.id)
   end
 
   # GET /virtual_cards/1
@@ -25,11 +25,10 @@ class VirtualCardsController < ApplicationController
   # POST /virtual_cards.json
   def create
     @virtual_card = VirtualCard.new(virtual_card_params)
-
     respond_to do |format|
       if @virtual_card.save
-        format.html { redirect_to @virtual_card, notice: 'Virtual card was successfully created.' }
-        format.json { render :show, status: :created, location: @virtual_card }
+        format.html { redirect_to action: "index", notice: 'Virtual card was successfully created.' }
+        format.json { render :index, status: :created }
       else
         format.html { render :new }
         format.json { render json: @virtual_card.errors, status: :unprocessable_entity }
@@ -42,8 +41,8 @@ class VirtualCardsController < ApplicationController
   def update
     respond_to do |format|
       if @virtual_card.update(virtual_card_params)
-        format.html { redirect_to @virtual_card, notice: 'Virtual card was successfully updated.' }
-        format.json { render :show, status: :ok, location: @virtual_card }
+        format.html { redirect_to action: "index", notice: 'Virtual card was successfully updated.' }
+        format.json { render :index, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @virtual_card.errors, status: :unprocessable_entity }
@@ -69,6 +68,6 @@ class VirtualCardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def virtual_card_params
-      params.require(:virtual_card).permit(:number, :cvc, :expiration_date, :card_id)
+      params.require(:virtual_card).permit(:number, :cvc, :expiration_date, :spent_limit, :usage_limit, :card_id)
     end
 end

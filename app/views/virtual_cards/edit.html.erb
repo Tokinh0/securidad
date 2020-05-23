@@ -1,6 +1,7 @@
-<h1>Editing Virtual Card</h1>
-
-<%= render 'form', virtual_card: @virtual_card %>
-
-<%= link_to 'Show', @virtual_card %> |
-<%= link_to 'Back', virtual_cards_path %>
+<div class="content">
+  <div class="d-flex">
+    <h1 class="p-2">Editing Virtual Card</h1>
+    <%= link_to 'voltar', virtual_cards_path, class: "ml-auto p-2" %>
+  </div>
+  <%= render 'form', virtual_card: @virtual_card %>
+</div>
