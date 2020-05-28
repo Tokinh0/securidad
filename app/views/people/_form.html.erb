@@ -11,19 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field hidden second-step">
+  <div class="field">
     <%= form.text_field :name, placeholder: 'Name' %>
   </div>
 
-  <div class="field hidden second-step">
+  <div class="field">
     <%= form.number_field :gender, placeholder: 'Gender' %>
   </div>
 
-  <div class="field hidden second-step mb-5">
+  <div class="field">
     <%= form.text_field :birth_date, placeholder: 'Birthdate' %>
   </div>
 
-  <%= form.fields_for :card do |builder|%>
-    <%= render 'cards/form',f: builder, card: person.cards.build %>
-  <% end %>
 <% end %>

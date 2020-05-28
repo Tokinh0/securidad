@@ -11,7 +11,11 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= form.text_field :value, placeholder: 'Valor' %>
+  </div>
+  <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Gerar Boleto", class: 'btn btn-primary'%>
   </div>
 <% end %>

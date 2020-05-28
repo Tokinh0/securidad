@@ -1,50 +1,96 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Voltar', people_path, class: "ml-auto p-2" %>
+<div class="content">
+  <%=image_tag(current_user.person.user_avatar, size: 100, class: "avatar")%>
+  <div>
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th>Informações Pessoais</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><strong>Nome:</strong></td>
+        <td><%= @person.name %></td>
+      </tr>
+      <tr>
+        <td><strong>Nascimento:</strong></td>
+        <td><%= @person.birth_date.strftime("%b, %m %Y") %></td>
+      </tr>
+      <tr>
+        <td><strong>Genero:</strong></td>
+        <td><%= @person.gender %></td>
+      </tr>
+      </tbody>
+    </table>
 
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th>Documentos</th>
+        <th></th>
+      </tr>
+      </thead>
+      <% if @person.documents.blank? %>
+        <tbody>
+        <tr>
+          <td>Ops... Não há nenhum documento registrado ainda</td>
+          <td></td>
+        </tr>
+        </tbody>
+      <% else %>
+        <% @person.documents.each do |document| %>
+          <tbody>
+          <tr>
+            <td><strong>Numero:</strong></td>
+            <td><%= document.number %></td>
+          </tr>
+          <tr>
+            <td><strong>Tipo de Documento:</strong></td>
+            <td><%= document.document_type %></td>
+          </tr>
+          </tbody>
+        <% end %>
+      <% end %>
 
-<%=image_tag(current_user.person.user_avatar, size: 100, class: "avatar")%>
+    </table>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @person.name %>
-</p>
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th>Informações de Contato</th>
+        <th></th>
+      </tr>
+      </thead>
+      <% if @person.contact_infos.blank? %>
+        <tbody>
+        <tr>
+          <td>Ops... Não há nenhuma informação de contato registrado ainda</td>
+          <td></td>
+        </tr>
+        </tbody>
+      <% else %>
+        <% @person.contact_infos.each do |contact| %>
+          <tbody>
+          <tr>
+            <td><strong>Email:</strong></td>
+            <td><%= contact.email %></td>
+          </tr>
+          <tr>
+            <td><strong>Celular:</strong></td>
+            <td><%= contact.mobile_phone %></td>
+          </tr>
+          <tr>
+            <td><strong>Telefone:</strong></td>
+            <td><%= contact.phone %></td>
+          </tr>
+          </tbody>
+        <% end %>
+      <% end %>
 
-<p>
-  <strong>Nascimento:</strong>
-  <%= @person.birth_date %>
-</p>
+    </table>
+  </div>
 
-<p>
-  <strong>Gênero:</strong>
-  <%= @person.gender %>
-</p>
-
-<% @person.contact_infos.each do |contact| %>
-  <p>
-    <strong>Email:</strong>
-    <%= contact.email %>
-  </p>
-  <p>
-    <strong>Celular:</strong>
-    <%= contact.mobile_phone %>
-  </p>
-  <p>
-    <strong>Telefone:</strong>
-    <%= contact.phone %>
-  </p>
-<% end %>
-
-<% @person.documents.each do |document| %>
-  <p>
-    <strong>Nª Documento:</strong>
-    <%= document.number %>
-  </p>
-  <p>
-    <strong>Tipo de Documento:</strong>
-    <%= document.type %>
-  </p>
-<% end %>
-
-
-<%= link_to 'Editar', edit_person_path(@person), class: 'btn btn-warning col-md-1 rounded-pill' %>
-
+  <%= link_to 'Editar', edit_person_path(@person), class: 'btn btn-warning col-md-1 rounded-pill' %>
+</div>

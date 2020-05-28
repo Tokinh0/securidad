@@ -4,7 +4,7 @@ class CreditsController < ApplicationController
   # GET /credits
   # GET /credits.json
   def index
-    @credits = Credit.all
+    @credits = Credit.all.where(person_id: current_user.person.id)
   end
 
   # GET /credits/1
@@ -25,7 +25,7 @@ class CreditsController < ApplicationController
   # POST /credits.json
   def create
     @credit = Credit.new(credit_params)
-
+    @credit.person = current_user.person
     respond_to do |format|
       if @credit.save
         format.html { redirect_to @credit, notice: 'Credit was successfully created.' }
@@ -68,7 +68,7 @@ class CreditsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def credit_params
-      params.fetch(:credit, {})
-    end
+  def credit_params
+    params.require(:credit).permit(:value)
+  end
 end

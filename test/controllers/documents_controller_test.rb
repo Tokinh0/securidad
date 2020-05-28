@@ -17,7 +17,7 @@ class DocumentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create document" do
     assert_difference('Document.count') do
-      post documents_url, params: { document: { belongs_to: @document.belongs_to, number: @document.number, type: @document.type } }
+      post documents_url, params: { document: { belongs_to: @document.belongs_to, number: @document.number, document_type: @document.document_type } }
     end
 
     assert_redirected_to document_url(Document.last)
@@ -34,7 +34,7 @@ class DocumentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update document" do
-    patch document_url(@document), params: { document: { belongs_to: @document.belongs_to, number: @document.number, type: @document.type } }
+    patch document_url(@document), params: { document: { belongs_to: @document.belongs_to, number: @document.number, document_type: @document.document_type } }
     assert_redirected_to document_url(@document)
   end
 

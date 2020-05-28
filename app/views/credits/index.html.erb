@@ -1,25 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Credits</h1>
+<h1>Depósitos</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th scope="col">Deposito em:</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <% if @credits.blank? %>
+    <br>
+    <h3>Ops.. Não foi realizado nenhum deposito ate o momento.</h3>
+  <% else %>
+    <tbody>
     <% @credits.each do |credit| %>
       <tr>
-        <td><%= link_to 'Show', credit %></td>
-        <td><%= link_to 'Edit', edit_credit_path(credit) %></td>
-        <td><%= link_to 'Destroy', credit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= credit.created_at.strftime("%b, %m %Y - %H:%M") %></td>
+        <td><%= credit.value %></td>
+        <td><%= credit.status %></td>
       </tr>
     <% end %>
-  </tbody>
+    </tbody>
+    <% end %>
+
 </table>
 
 <br>
 
-<%= link_to 'New Credit', new_credit_path %>
+<%= link_to 'Depositar', new_credit_path, class: 'btn btn-primary' %>
