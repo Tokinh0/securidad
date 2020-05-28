@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 <%= link_to 'Voltar', people_path, class: "ml-auto p-2" %>
+
+
+<%=image_tag(current_user.person.user_avatar, size: 100, class: "avatar")%>
+
 <p>
   <strong>Nome:</strong>
   <%= @person.name %>
