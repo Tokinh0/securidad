@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 2020_05_28_171004) do
     t.index ["person_id"], name: "index_contact_infos_on_person_id"
   end
 
-  create_table "credits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "credit
+s", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "person_id"
     t.float "value"
     t.datetime "created_at", precision: 6, null: false
