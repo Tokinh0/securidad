@@ -49,5 +49,4 @@ test:
 production:
   <<: *default
   database: securidad_production
-  username: securidad
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
