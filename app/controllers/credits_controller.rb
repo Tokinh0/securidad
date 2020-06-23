@@ -4,7 +4,7 @@ class CreditsController < ApplicationController
   # GET /credits
   # GET /credits.json
   def index
-    @credits = Credit.all.where(person_id: current_user.person.id)
+    @credits = Credit.all.where(person_id: current_user.person_id)
   end
 
   # GET /credits/1
@@ -25,7 +25,7 @@ class CreditsController < ApplicationController
   # POST /credits.json
   def create
     @credit = Credit.new(credit_params)
-    @credit.person = current_user.person
+    @credit.person= current_user.person
     respond_to do |format|
       if @credit.save
         format.html { redirect_to @credit, notice: 'Credit was successfully created.' }

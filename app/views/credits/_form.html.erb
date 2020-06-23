@@ -1,4 +1,4 @@
-<%= form_with(model: credit, local: true) do |form| %>
+<%= form(model: credit, local: true) do |form| %>
   <% if credit.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(credit.errors.count, "error") %> prohibited this credit from being saved:</h2>

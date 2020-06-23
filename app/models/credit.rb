@@ -3,7 +3,7 @@ class Credit < ApplicationRecord
 
   validates :value, presence: :true
 
-  before_create :assign_credit
+  after_create :assign_credit
 
   enum status: {pending: 0, approved: 1, rejected: 2}
 
