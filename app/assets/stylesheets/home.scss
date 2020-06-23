@@ -3,6 +3,19 @@
   overflow-y: scroll;
 }
 
-.featurette {
-  overflow-y: hidden;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.content {
+  -ms-overflow-style: none;
+}
+.card-text {
+  text-align: justify;
+}
+.home-icon{
+  text-align: center;
+  align-self: center;
 }

@@ -10,22 +10,21 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= form.label :usage_limit %>
     <%= form.text_field :usage_limit %>
   </div>
-
+  <br>
   <div class="field">
     <%= form.label :spent_limit %>
     <%= form.text_field :spent_limit %>
   </div>
-
+  <br>
   <div class="field">
     <%= form.label :card_id %>
     <%= form.select :card_id, options_for_select(current_user.person.cards.ids)%>
   </div>
-
+  <br>
   <div class="actions">
     <%= form.submit "Salvar", class: "btn btn-primary col-md-1 rounded-pill pull-right" %>
     <% if @virtual_card&.valid? %>
