@@ -94,3 +94,13 @@ input::placeholder{
   height: 62%;
   padding: 1em;
 }
+
+[type="number"], [type="email"], [type="text"], [type="password"] {
+  border-radius: 0;
+  border-width: 0 0 2px;
+  border-color: #b5dde5;
+  background: rgba(255, 255, 255, 0);
+  padding: 5px 9px;
+  border-style: solid;
+  width: 100%;
+}
